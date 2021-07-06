@@ -105,6 +105,12 @@ class Hla(HighLevelAnalyzer):
             outstr = outstr + self.readPin()
         elif self.dataList[0] == 0x82:
             outstr = outstr + self.writePin()
+        elif  self.dataList[0] == 0xA0:
+            outstr = outstr + self.readRam() 
+        elif  self.dataList[0] == 0xA1:
+            outstr = outstr + self.readFlash() 
+        elif  self.dataList[0] == 0xA3:
+            outstr = outstr + self.writeRam() 
         elif (self.dataList[0] >= 0xC8 and self.dataList[0] <= 0xDA):
             outstr = outstr + self.configurePin() 
 
@@ -133,7 +139,26 @@ class Hla(HighLevelAnalyzer):
         return "Reset Command"
 
 
+    def readRam(self):
+        address = self.dataList[1] + 256 * self.dataList[2] 
+        if self.wombat_frame.data["read"]:
+            value =self.dataList[3]
+            return f'Read RAM Address: 0x{"{:04X} ".format(address)} Value: {value}/0x{"{:02X} ".format(value)} '
+        else:
+            return f'Read RAM Address: 0x{"{:04X} ".format(address)}'
 
+    def readFlash(self):
+        address = self.dataList[1] + 256 * self.dataList[2] 
+        if self.wombat_frame.data["read"]:
+            value =self.dataList[4] + self.dataList[5] * 256
+            return f'Read Flash Address: 0x{"{:04X} ".format(address)} Value: {value}/0x{"{:04X} ".format(value)} '
+        else:
+            return f'Read Flash Address: 0x{"{:04X} ".format(address)}'
+
+    def writeRam(self):
+        address = self.dataList[1] + 256 * self.dataList[2]  + self.dataList[3] * 65536 + self.dataList[4] * 256 * 65536
+        value =self.dataList[5]
+        return f'Write RAM Address: 0x{"{:04X} ".format(address)} Value: {value}/0x{"{:02X} ".format(value)} '
 
 
 
