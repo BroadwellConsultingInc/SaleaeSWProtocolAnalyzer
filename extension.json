@@ -2,8 +2,8 @@
   "name": "Serial Wombat Protocol Analyzer",
   "apiVersion": "1.0.0",
   "author": "Broadwell Consulting Inc",
-  "version": "0.0.2",
-  "description": "Decodes 8 Byte Serial Wombat Protocol I2C Frames",
+  "version": "1.1.0",
+  "description": "Decodes 8 Byte Serial Wombat Protocol I2C And UART Frames",
   "extensions": {
     "Serial Wombat Protocol Analyzer": {
       "type": "HighLevelAnalyzer",
