@@ -4,7 +4,7 @@
 Protocol Analyzer for I2C and UART protocol of Serial Wombat I/O expansion chips.  See serialwombat.com .
 
 YouTube tutorials available at:
-
+ [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/cL7kUm9qjvU/0.jpg)](https://www.youtube.com/watch?v=cL7kUm9qjvU) 
 
 
 When using I2C, select the I2C decoder and select I2C as the protocol.
